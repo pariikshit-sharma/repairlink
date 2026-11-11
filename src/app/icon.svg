@@ -1,0 +1,20 @@
+<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="16" fill="#FFFFFF" />
+  <defs>
+    <linearGradient id="rl-icon-grad" x1="12" y1="38" x2="52" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#17253D" />
+      <stop offset="44%" stop-color="#1E2B45" />
+      <stop offset="56%" stop-color="#DF7B30" />
+      <stop offset="100%" stop-color="#E78235" />
+    </linearGradient>
+  </defs>
+  <circle cx="21" cy="20" r="4.5" fill="#17253D" />
+  <circle cx="43" cy="20" r="4.5" fill="#E78235" />
+  <path
+    d="M21 28C15.5 28 11 32.5 11 38C11 43.5 15.5 48 21 48C26.5 48 30.5 42.5 32 38C33.5 33.5 37.5 28 43 28C48.5 28 53 32.5 53 38C53 43.5 48.5 48 43 48C37.5 48 33.5 42.5 32 38C30.5 33.5 26.5 28 21 28Z"
+    stroke="url(#rl-icon-grad)"
+    stroke-width="5.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>

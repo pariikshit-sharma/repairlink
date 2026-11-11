@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 200 17% 98%;
+    --foreground: 206 43% 16%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 206 43% 16%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 206 43% 16%;
+
+    --primary: 187 89% 29%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 54% 20%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 207 20% 96%;
+    --muted-foreground: 208 13% 46%;
+
+    --accent: 161 54% 92%;
+    --accent-foreground: 166 74% 17%;
+
+    --destructive: 2 64% 58%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 18% 89%;
+    --input: 210 18% 89%;
+    --ring: 187 89% 29%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Focus ring for high keyboard accessibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+}
+
+/* Hide scrollbars cleanly for mobile horizontal tab strips */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Respect OS reduced-motion preferences across CSS animations */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f8;
+}
+::-webkit-scrollbar-thumb {
+  background: #c8d4df;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #98afc3;
+}
