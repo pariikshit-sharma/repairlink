@@ -39,9 +39,9 @@ export interface AdminActivityItem {
 
 const INITIAL_ACCOUNTS: PlatformAccount[] = [
   {
-    id: "demo-user-001",
-    full_name: "Ramesh Kumar",
-    email: "user@demo.repairlink.org",
+    id: "user-default-01",
+    full_name: "Priya Sharma",
+    email: "user@repairlink.org",
     phone: "+91 98112 43210",
     city: "New Delhi",
     role: "user",
@@ -179,8 +179,8 @@ const INITIAL_ACCOUNTS: PlatformAccount[] = [
     last_active: "2024-11-10",
   },
   {
-    id: "demo-admin-004",
-    full_name: "Ananya Deshmukh",
+    id: "admin-default-04",
+    full_name: "Platform Administrator",
     organization_name: "RepairLink Platform Operations",
     email: "admin@repairlink.org",
     phone: "+91 800 419 7372",
@@ -276,7 +276,7 @@ const INITIAL_CATEGORIES: PlatformCategory[] = [
 const INITIAL_ADMIN_LOGS: AdminActivityItem[] = [
   {
     id: "log-seed-1",
-    actor: "Ananya Deshmukh (Admin)",
+    actor: "Platform Administrator (Admin)",
     action: "Verified Institution",
     target: "Indian Spinal Injuries Centre (ISIC)",
     details: "Approved spinal rehab equipment loan pool and safety SOPs.",

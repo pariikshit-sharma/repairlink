@@ -283,7 +283,7 @@ function RegisterContent() {
                 <Input
                   label={selectedRole === "institution" ? "Contact Person Name" : "Full Name"}
                   required
-                  placeholder="e.g. Ramesh Kumar"
+                  placeholder="e.g. Priya Sharma"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   startIcon={<User className="w-4 h-4" />}
@@ -445,7 +445,7 @@ function RegisterContent() {
                   <Input
                     label="Business / Workshop Name *"
                     required
-                    placeholder="e.g. Apex Mobility Diagnostics"
+                    placeholder="e.g. Precision Mobility Care"
                     value={businessName}
                     onChange={(e) => setBusinessName(e.target.value)}
                   />
@@ -518,7 +518,7 @@ function RegisterContent() {
                   <Input
                     label="Institution / NGO Name *"
                     required
-                    placeholder="e.g. AIIMS PMR Department"
+                    placeholder="e.g. City Rehabilitation Hospital / NGO"
                     value={institutionName}
                     onChange={(e) => setInstitutionName(e.target.value)}
                   />

@@ -56,7 +56,7 @@ export function CtaBanner() {
           </div>
 
           <p className="text-xs text-slate-400 pt-2">
-            SBI Young Innovators Ideathon Prototype • Open for Demonstrations & Evaluations
+            Fast, accessible wheelchair repair and hospital loaner equipment network.
           </p>
         </div>
       </FadeInSection>

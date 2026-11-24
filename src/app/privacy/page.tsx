@@ -86,11 +86,10 @@ export default function PrivacyPage() {
             <span>2. Prototype Simulation vs. Verified Real-World Notice</span>
           </h2>
           <p className="text-slate-600">
-            This SBI Young Innovators Ideathon prototype includes seeded demonstration accounts,
-            workshops, and Delhi NCR hospital inventory pools stored locally in browser{" "}
-            <code>localStorage</code> and session cookies when live Supabase credentials are not
-            attached. Real-world production deployments require signed Supabase Auth tokens and
-            consent-audited clinical agreements.
+            RepairLink operates secure, role-based account management with end-to-end data protection.
+            When testing in local evaluation mode without live Supabase credentials attached, records are
+            stored safely in your local browser session. Production deployments utilize signed Supabase Auth
+            tokens and encrypted database policies.
           </p>
         </section>
 

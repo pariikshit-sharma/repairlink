@@ -7,7 +7,7 @@ export const APP_CONFIG = {
   supportPhone: "+91 (800) 419-7372",
   supportEmail: "support@repairlink.org",
   prototypeNotice:
-    "SBI Young Innovators Ideathon Prototype — Verified Real-Time Mobility Continuity Network",
+    "RepairLink — Verified Real-Time Mobility Continuity Network",
 };
 
 export const NAVIGATION_LINKS = [

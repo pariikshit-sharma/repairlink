@@ -178,7 +178,7 @@ export function Hero() {
                           </span>
                         </div>
                         <Badge variant="accent" className="text-[10px] bg-emerald-700 text-white">
-                          Reserved from AIIMS Rehab
+                          Verified Hospital Loaner Reserved
                         </Badge>
                       </div>
                     </div>

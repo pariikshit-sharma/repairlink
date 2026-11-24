@@ -35,8 +35,8 @@ export function Footer() {
 
             <div className="pt-2">
               <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-300">
-                <Sparkles className="w-4 h-4 text-accent" />
-                <span>Prototype developed for <strong>SBI Young Innovators Ideathon</strong></span>
+                <ShieldCheck className="w-4 h-4 text-accent" />
+                <span>Verified Real-Time Mobility Continuity Network</span>
               </div>
             </div>
           </div>

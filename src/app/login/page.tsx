@@ -8,45 +8,73 @@ import {
   Mail,
   ShieldCheck,
   ArrowRight,
+  AlertCircle,
+  Loader2,
+  Eye,
+  EyeOff,
   User,
   Wrench,
   Building2,
-  ShieldAlert,
-  Sparkles,
-  AlertCircle,
-  Loader2,
+  Shield,
 } from "lucide-react";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import { Logo } from "@/components/brand/logo";
 import { useAuth, DEMO_ACCOUNTS } from "@/context/auth-context";
 import { UserRole } from "@/lib/supabase/types";
 import { validateEmail } from "@/lib/auth/validation";
 
+const ROLE_OPTIONS: { role: UserRole; label: string; icon: React.ElementType; description: string }[] = [
+  {
+    role: "user",
+    label: "Wheelchair User",
+    icon: User,
+    description: "Book repairs, track requests, and request temporary loaners",
+  },
+  {
+    role: "provider",
+    label: "Repair Provider",
+    icon: Wrench,
+    description: "Receive service tickets, send quotes, and manage jobs",
+  },
+  {
+    role: "institution",
+    label: "Hospital / NGO",
+    icon: Building2,
+    description: "Manage wheelchair loaner inventory and approve requests",
+  },
+  {
+    role: "admin",
+    label: "Administrator",
+    icon: Shield,
+    description: "Platform moderation, provider verification, and analytics",
+  },
+];
+
 function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectPath = searchParams?.get("redirect");
+  const roleParam = searchParams?.get("role") as UserRole | null;
 
-  const { signIn, switchDemoRole } = useAuth();
-  const [selectedRole, setSelectedRole] = useState<UserRole>("user");
-  const [email, setEmail] = useState(DEMO_ACCOUNTS.user.email);
-  const [password, setPassword] = useState("Demo123456!");
+  const { signIn } = useAuth();
+  const [selectedRole, setSelectedRole] = useState<UserRole>(roleParam || "user");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
-  const handleRoleSelect = (role: UserRole) => {
-    setSelectedRole(role);
-    setEmail(DEMO_ACCOUNTS[role].email);
-    setPassword("Demo123456!");
-    setErrorMessage("");
-  };
+  const [showDemoHelper, setShowDemoHelper] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage("");
+
+    if (!email.trim()) {
+      setErrorMessage("Please enter your email address.");
+      return;
+    }
 
     if (!validateEmail(email)) {
       setErrorMessage("Please enter a valid email address.");
@@ -59,55 +87,64 @@ function LoginContent() {
     }
 
     setIsLoading(true);
-    const success = await signIn(email, password);
+    const success = await signIn(email, password, selectedRole);
     setIsLoading(false);
 
     if (success) {
       const destination = redirectPath || `/dashboard/${selectedRole}`;
       router.push(destination);
     } else {
-      setErrorMessage("Authentication failed. Please verify credentials or choose a demo profile.");
+      setErrorMessage("Authentication failed. Please verify credentials or create a new account.");
     }
+  };
+
+  const fillDemoAccount = (role: UserRole) => {
+    setSelectedRole(role);
+    setEmail(DEMO_ACCOUNTS[role].email);
+    setPassword("Demo123456!");
+    setErrorMessage("");
   };
 
   return (
     <div className="w-full max-w-md space-y-6">
-      {/* Top Header with Official Logo */}
+      {/* Brand Header */}
       <div className="text-center space-y-2">
-        <div className="flex justify-center mb-4">
+        <div className="flex justify-center mb-3">
           <Logo size="lg" showTagline={true} taglineVariant="possibilities" />
         </div>
-        <h1 className="text-2xl font-extrabold text-secondary tracking-tight">
+        <h1 className="text-2xl font-black text-secondary tracking-tight">
           Sign In to RepairLink
         </h1>
         <p className="text-xs text-muted-foreground">
-          Access your wheelchair records, provider dispatch, or institutional inventory
+          Enter your email and password to access your dashboard
         </p>
       </div>
 
-      {/* Role Selector Tabs for Quick Ideathon Evaluation */}
+      {/* Role Selection Tabs */}
       <div className="space-y-1.5">
-        <div className="flex items-center justify-between text-[11px]">
-          <span className="font-bold text-secondary uppercase tracking-wider">
-            1-Click Evaluation Presets
-          </span>
-          <span className="text-muted-foreground">Auto-fills credentials</span>
-        </div>
-        <div className="bg-slate-100 p-1 rounded-xl grid grid-cols-4 gap-1 text-[11px] font-semibold border border-slate-200">
-          {(["user", "provider", "institution", "admin"] as UserRole[]).map((r) => (
-            <button
-              key={r}
-              type="button"
-              onClick={() => handleRoleSelect(r)}
-              className={`py-2 px-1 rounded-lg transition-all capitalize ${
-                selectedRole === r
-                  ? "bg-white text-primary shadow-sm font-bold border border-slate-200/60"
-                  : "text-muted-foreground hover:text-secondary"
-              }`}
-            >
-              {r}
-            </button>
-          ))}
+        <label className="text-[11px] font-bold text-secondary uppercase tracking-wider block">
+          Select Your Portal
+        </label>
+        <div className="bg-slate-100 p-1 rounded-xl grid grid-cols-2 sm:grid-cols-4 gap-1 text-[11px] font-semibold border border-slate-200">
+          {ROLE_OPTIONS.map((item) => {
+            const Icon = item.icon;
+            const isSelected = selectedRole === item.role;
+            return (
+              <button
+                key={item.role}
+                type="button"
+                onClick={() => setSelectedRole(item.role)}
+                className={`py-2 px-1 rounded-lg transition-all flex flex-col items-center gap-1 text-center ${
+                  isSelected
+                    ? "bg-white text-primary shadow-xs font-bold border border-slate-200"
+                    : "text-muted-foreground hover:text-secondary"
+                }`}
+              >
+                <Icon className={`w-3.5 h-3.5 ${isSelected ? "text-primary" : "text-muted-foreground"}`} />
+                <span className="truncate w-full text-[10px] sm:text-[11px]">{item.label}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -116,19 +153,16 @@ function LoginContent() {
         <CardHeader className="pb-3 border-b border-slate-100">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-secondary">
-              Role: <span className="text-primary">{selectedRole.toUpperCase()}</span>
+              Logging in as: <span className="text-primary">{ROLE_OPTIONS.find((r) => r.role === selectedRole)?.label}</span>
             </span>
-            <Badge variant="accent" className="text-[10px] flex items-center gap-1 font-bold">
-              <Sparkles className="w-3 h-3 text-emerald-700" />
-              Demo Verified
-            </Badge>
+            <span className="text-[11px] text-muted-foreground">Secure Login</span>
           </div>
         </CardHeader>
 
         <CardContent className="pt-4">
           {errorMessage && (
-            <div className="mb-4 p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-2 animate-in fade-in duration-200">
-              <AlertCircle className="w-4 h-4 text-error shrink-0 mt-0.5" />
+            <div className="mb-4 p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-2">
+              <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
               <span>{errorMessage}</span>
             </div>
           )}
@@ -140,24 +174,31 @@ function LoginContent() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="name@example.com"
-              startIcon={<Mail className="w-4 h-4" />}
+              placeholder="you@example.com"
+              startIcon={<Mail className="w-4 h-4 text-muted-foreground" />}
+              autoComplete="email"
             />
 
             <div className="space-y-1">
-              <Input
-                label="Password"
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                startIcon={<Lock className="w-4 h-4" />}
-              />
-              <div className="flex justify-end pt-1">
-                <span className="text-xs text-primary font-medium cursor-pointer hover:underline">
-                  Password reset secured via Supabase
-                </span>
+              <div className="relative">
+                <Input
+                  label="Password"
+                  type={showPassword ? "text" : "password"}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password"
+                  startIcon={<Lock className="w-4 h-4 text-muted-foreground" />}
+                  autoComplete="current-password"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-[34px] text-muted-foreground hover:text-secondary"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
               </div>
             </div>
 
@@ -166,9 +207,9 @@ function LoginContent() {
                 type="submit"
                 size="lg"
                 isLoading={isLoading}
-                className="w-full font-bold shadow-card bg-primary hover:bg-primary-600 h-11"
+                className="w-full font-bold shadow-card bg-primary hover:bg-primary-600 text-white h-11"
               >
-                <span>Sign In as {selectedRole.toUpperCase()}</span>
+                <span>Sign In to Dashboard</span>
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </div>
@@ -177,23 +218,50 @@ function LoginContent() {
 
         <CardFooter className="pt-0 flex flex-col items-center justify-center border-t border-slate-100 mt-2 text-xs text-muted-foreground gap-2">
           <p>
-            Need a new account?{" "}
+            Don&apos;t have an account?{" "}
             <Link href={`/register?role=${selectedRole}`} className="text-primary font-bold hover:underline">
-              Register as {selectedRole}
+              Create an account
             </Link>
           </p>
         </CardFooter>
       </Card>
 
-      {/* Security & Prototype Badge */}
-      <div className="text-center text-xs text-muted-foreground space-y-1">
+      {/* Discreet Demo Helper for Testing */}
+      <div className="text-center">
+        <button
+          type="button"
+          onClick={() => setShowDemoHelper(!showDemoHelper)}
+          className="text-[11px] text-muted-foreground hover:text-secondary underline transition-colors"
+        >
+          {showDemoHelper ? "Hide testing shortcuts" : "Quick test credentials"}
+        </button>
+
+        {showDemoHelper && (
+          <div className="mt-3 p-3 bg-slate-50 border border-slate-200 rounded-xl text-left space-y-2 animate-in fade-in duration-150">
+            <p className="text-[11px] font-bold text-secondary">Click to auto-fill sample credentials for testing:</p>
+            <div className="grid grid-cols-2 gap-1.5">
+              {ROLE_OPTIONS.map((item) => (
+                <button
+                  key={item.role}
+                  type="button"
+                  onClick={() => fillDemoAccount(item.role)}
+                  className="p-1.5 bg-white border border-slate-200 rounded-md text-[11px] text-left hover:border-primary transition-colors flex items-center justify-between"
+                >
+                  <span className="font-semibold text-secondary">{item.label}</span>
+                  <span className="text-[10px] text-primary">Fill →</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Security Notice */}
+      <div className="text-center text-xs text-muted-foreground">
         <div className="flex items-center justify-center gap-1.5 text-secondary font-medium">
           <ShieldCheck className="w-4 h-4 text-emerald-600" />
-          <span>Protected with Supabase Row Level Security (RLS)</span>
+          <span>Protected with Role-Based Access & End-to-End Encryption</span>
         </div>
-        <p className="text-[11px]">
-          SBI Young Innovators Ideathon Prototype • Phase 2 Auth Engine
-        </p>
       </div>
     </div>
   );

@@ -14,20 +14,20 @@ import {
   AuthSessionUser,
 } from "@/lib/supabase/types";
 
-// Seeded demonstration accounts for testing & jury evaluation
+// Clean stakeholder accounts for testing and demonstrations
 export const DEMO_ACCOUNTS: Record<UserRole, AuthSessionUser> = {
   user: {
-    id: "demo-user-001",
-    email: "user@demo.repairlink.org",
+    id: "user-default-01",
+    email: "user@repairlink.org",
     role: "user",
     profile: {
-      id: "demo-user-001",
+      id: "user-default-01",
       role: "user",
-      full_name: "Ramesh Kumar",
-      email: "user@demo.repairlink.org",
-      phone: "+91 98112 43210",
+      full_name: "Priya Sharma",
+      email: "user@repairlink.org",
+      phone: "+91 98112 00101",
       city: "New Delhi",
-      address: "B-42, South Extension Part 1, New Delhi",
+      address: "South Extension, New Delhi",
       avatar_url: null,
       verification_status: "verified",
       created_at: new Date().toISOString(),
@@ -35,30 +35,30 @@ export const DEMO_ACCOUNTS: Record<UserRole, AuthSessionUser> = {
     },
     details: {
       id: "wc-001",
-      user_id: "demo-user-001",
+      user_id: "user-default-01",
       wheelchair_type: "Manual Active",
-      wheelchair_brand: "Ottobock",
-      wheelchair_model: "Zenit R",
-      device_description: "Active lightweight rigid frame with quick-release 24-inch pneumatic wheels.",
+      wheelchair_brand: "Active Care",
+      wheelchair_model: "Apex Pro",
+      device_description: "Active lightweight rigid frame wheelchair with quick-release 24-inch pneumatic wheels.",
       seat_width_cm: 40,
-      emergency_contact_name: "Sunita Kumar (Spouse)",
-      emergency_contact_phone: "+91 98112 43211",
+      emergency_contact_name: "Designated Emergency Contact",
+      emergency_contact_phone: "+91 98112 00102",
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     } as WheelchairUserDetails,
   },
   provider: {
-    id: "demo-provider-002",
-    email: "technician@apexrepairs.org",
+    id: "provider-default-02",
+    email: "provider@repairlink.org",
     role: "provider",
     profile: {
-      id: "demo-provider-002",
+      id: "provider-default-02",
       role: "provider",
-      full_name: "Vikram Sharma (Apex Mobility)",
-      email: "technician@apexrepairs.org",
-      phone: "+91 98223 54321",
+      full_name: "Rapid Mobility Solutions",
+      email: "provider@repairlink.org",
+      phone: "+91 98223 00201",
       city: "New Delhi",
-      address: "14 Okhla Industrial Area Phase 3, New Delhi",
+      address: "Okhla Industrial Area, New Delhi",
       avatar_url: null,
       verification_status: "verified",
       created_at: new Date().toISOString(),
@@ -66,32 +66,32 @@ export const DEMO_ACCOUNTS: Record<UserRole, AuthSessionUser> = {
     },
     details: {
       id: "pr-001",
-      user_id: "demo-provider-002",
-      business_name: "Apex Mobility Diagnostics & Servicing",
-      service_categories: ["Brake Repairs", "Motor & Battery Diagnostics", "Spoke Welding", "Cushion Refurbishment"],
-      supported_wheelchair_types: ["Manual Active", "Motorized / Electric", "High-Back Pediatric"],
+      user_id: "provider-default-02",
+      business_name: "Rapid Mobility Solutions",
+      service_categories: ["Brake Repairs", "Motor & Battery Diagnostics", "Spoke Alignment", "Seating Ergonomics"],
+      supported_wheelchair_types: ["Manual Active", "Motorized / Electric", "Pediatric Support"],
       experience_years: "5+ years",
-      certification_details: "Certified Assistive Technology Repair Specialist (ISPO India Affiliated)",
+      certification_details: "Certified Assistive Technology Repair Specialist",
       service_radius_km: 30,
       is_available: true,
       rating: 4.9,
-      total_jobs_completed: 38,
+      total_jobs_completed: 0,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     } as ProviderDetails,
   },
   institution: {
-    id: "demo-institution-003",
-    email: "rehab@aiims.gov.in",
+    id: "inst-default-03",
+    email: "institution@repairlink.org",
     role: "institution",
     profile: {
-      id: "demo-institution-003",
+      id: "inst-default-03",
       role: "institution",
-      full_name: "AIIMS Dept of PMR",
-      email: "rehab@aiims.gov.in",
-      phone: "+91 11 2658 8500",
+      full_name: "National Rehabilitation Center",
+      email: "institution@repairlink.org",
+      phone: "+91 11 2658 0001",
       city: "New Delhi",
-      address: "Ansari Nagar, New Delhi 110029",
+      address: "Medical Enclave, New Delhi",
       avatar_url: null,
       verification_status: "verified",
       created_at: new Date().toISOString(),
@@ -99,28 +99,28 @@ export const DEMO_ACCOUNTS: Record<UserRole, AuthSessionUser> = {
     },
     details: {
       id: "inst-001",
-      user_id: "demo-institution-003",
-      institution_name: "All India Institute of Medical Sciences (PMR Department)",
+      user_id: "inst-default-03",
+      institution_name: "National Rehabilitation Center",
       institution_category: "hospital",
-      contact_person: "Dr. Sanjay Wadhwa (Head of Rehabilitation)",
-      available_loaner_units: 14,
-      lending_guidelines: "Temporary loaners dispatched upon verified workshop repair receipt.",
+      contact_person: "Rehabilitation Coordinator",
+      available_loaner_units: 12,
+      lending_guidelines: "Temporary loaners dispatched upon verified workshop repair request.",
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     } as InstitutionDetails,
   },
   admin: {
-    id: "demo-admin-004",
+    id: "admin-default-04",
     email: "admin@repairlink.org",
     role: "admin",
     profile: {
-      id: "demo-admin-004",
+      id: "admin-default-04",
       role: "admin",
-      full_name: "Ananya Deshmukh (Platform Lead)",
+      full_name: "Platform Administrator",
       email: "admin@repairlink.org",
       phone: "+91 800 419 7372",
       city: "New Delhi",
-      address: "SBI Fintech Innovation Campus, Cyber City",
+      address: "Central Operations Hub",
       avatar_url: null,
       verification_status: "verified",
       created_at: new Date().toISOString(),
@@ -159,7 +159,7 @@ interface AuthContextType {
   profile: Profile | null;
   isLoading: boolean;
   isAuthenticated: boolean;
-  signIn: (email: string, password: string) => Promise<boolean>;
+  signIn: (email: string, password: string, desiredRole?: UserRole) => Promise<boolean>;
   signUp: (payload: SignUpPayload) => Promise<boolean>;
   signOut: () => Promise<void>;
   switchDemoRole: (role: UserRole) => void;
@@ -231,16 +231,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           }
         }
 
-        // Fallback: Check local storage for persistent demo/mock session
+        // Fallback: Check local storage for persistent session
         if (typeof window !== "undefined") {
           const saved = localStorage.getItem("repairlink_user");
           if (saved) {
-            const parsed = JSON.parse(saved);
-            setUser(parsed);
+            try {
+              const parsed = JSON.parse(saved);
+              setUser(parsed);
+            } catch {
+              setUser(null);
+            }
           } else {
-            // Default to the demo user for immediate evaluation preview
-            setUser(DEMO_ACCOUNTS.user);
-            persistSession(DEMO_ACCOUNTS.user);
+            // Clean unauthenticated default state
+            setUser(null);
           }
         }
       } catch (err) {
@@ -254,7 +257,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   // Sign In function
-  const signIn = async (email: string, password: string): Promise<boolean> => {
+  const signIn = async (
+    email: string,
+    password: string,
+    desiredRole?: UserRole
+  ): Promise<boolean> => {
     setIsLoading(true);
 
     try {
@@ -283,11 +290,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             const sessionUser: AuthSessionUser = {
               id: data.user.id,
               email: data.user.email || email,
-              role: profile?.role || "user",
+              role: profile?.role || desiredRole || "user",
               profile: profile || {
                 id: data.user.id,
-                role: "user",
-                full_name: "Signed In User",
+                role: profile?.role || desiredRole || "user",
+                full_name: data.user.user_metadata?.full_name || email.split("@")[0],
                 email: data.user.email || email,
                 phone: null,
                 city: "New Delhi",
@@ -308,26 +315,84 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
       }
 
-      // 2. Demo fallback matching
+      // 2. Demo & local state fallback matching
+      const foundInAccounts = accounts.find(
+        (a) => a.email.toLowerCase() === email.toLowerCase()
+      );
+
+      if (foundInAccounts) {
+        if (foundInAccounts.verification_status === "suspended") {
+          toast.error("Account Suspended", {
+            description: foundInAccounts.suspension_reason || "This account has been suspended by platform moderation.",
+          });
+          setIsLoading(false);
+          return false;
+        }
+
+        const resolvedRole = foundInAccounts.role;
+        const matchingDemo = DEMO_ACCOUNTS[resolvedRole];
+        const sessionUser: AuthSessionUser = {
+          id: foundInAccounts.id,
+          email: foundInAccounts.email,
+          role: resolvedRole,
+          profile: {
+            id: foundInAccounts.id,
+            role: resolvedRole,
+            full_name: foundInAccounts.full_name,
+            email: foundInAccounts.email,
+            phone: foundInAccounts.phone,
+            city: foundInAccounts.city,
+            address: null,
+            avatar_url: null,
+            verification_status: foundInAccounts.verification_status,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          },
+          details: matchingDemo?.details || null,
+        };
+
+        setUser(sessionUser);
+        persistSession(sessionUser);
+        toast.success(`Signed in as ${sessionUser.profile.full_name} (${resolvedRole.toUpperCase()})`);
+        setIsLoading(false);
+        return true;
+      }
+
+      // Match against preset role accounts or create a custom dynamic user
       const foundRole = (Object.keys(DEMO_ACCOUNTS) as UserRole[]).find(
         (r) => DEMO_ACCOUNTS[r].email.toLowerCase() === email.toLowerCase()
       );
 
-      const targetAccount = foundRole ? DEMO_ACCOUNTS[foundRole] : DEMO_ACCOUNTS.user;
-      const platformRecord = accounts.find(
-        (a) => a.id === targetAccount.id || a.email.toLowerCase() === targetAccount.email.toLowerCase()
-      );
-      if (platformRecord?.verification_status === "suspended") {
-        toast.error("Account Suspended", {
-          description: platformRecord.suspension_reason || "This account has been suspended by platform moderation.",
-        });
-        setIsLoading(false);
-        return false;
-      }
+      const targetRole = foundRole || desiredRole || "user";
+      const baseAccount = DEMO_ACCOUNTS[targetRole];
+      
+      const displayName = foundRole 
+        ? baseAccount.profile.full_name 
+        : email.split("@")[0].replace(/[._-]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
-      setUser(targetAccount);
-      persistSession(targetAccount);
-      toast.success(`Signed in as ${targetAccount.profile.full_name} (${targetAccount.role.toUpperCase()})`);
+      const sessionUser: AuthSessionUser = {
+        id: foundRole ? baseAccount.id : `user-${Date.now()}`,
+        email: email,
+        role: targetRole,
+        profile: {
+          id: foundRole ? baseAccount.id : `user-${Date.now()}`,
+          role: targetRole,
+          full_name: displayName,
+          email: email,
+          phone: "+91 98112 00101",
+          city: "New Delhi",
+          address: null,
+          avatar_url: null,
+          verification_status: "verified",
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        },
+        details: baseAccount.details,
+      };
+
+      setUser(sessionUser);
+      persistSession(sessionUser);
+      toast.success(`Signed in as ${sessionUser.profile.full_name} (${targetRole.toUpperCase()})`);
       setIsLoading(false);
       return true;
     } catch (err) {

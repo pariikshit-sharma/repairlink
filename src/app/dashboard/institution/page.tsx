@@ -121,7 +121,7 @@ function InstitutionDashboardContent() {
   const [selectedReqForApproval, setSelectedReqForApproval] =
     useState<TemporarySupportRequest | null>(null);
   const [pickupInstructions, setPickupInstructions] = useState(
-    "Approved. Collect at Room 104, PMR Ground Floor, AIIMS Ansari Nagar. Bring Govt Photo ID & Repair Ticket."
+    "Approved. Collect at our rehabilitation center equipment desk. Bring government photo ID and repair ticket."
   );
   const [rehabNotes, setRehabNotes] = useState(
     "Clinical seating profile verified. Dimensions match patient requirements."
@@ -1432,7 +1432,7 @@ function InstitutionDashboardContent() {
                   <Input
                     value={newSerial}
                     onChange={(e) => setNewSerial(e.target.value)}
-                    placeholder="e.g. AIIMS-LN-055"
+                    placeholder="e.g. LN-055"
                     required
                   />
                 </div>
@@ -1786,42 +1786,7 @@ function InstitutionDashboardContent() {
         </Dialog>
       )}
 
-      {/* Evaluation Role Switcher Banner */}
-      <div className="p-4 rounded-xl bg-slate-100 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-        <div>
-          <span className="font-bold text-secondary">Evaluating for SBI Young Innovators Ideathon?</span>
-          <p className="text-muted-foreground">Switch to other stakeholder portals with RBAC session update:</p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onClick={() => switchDemoRole("user")}
-            className="text-primary font-bold hover:underline cursor-pointer"
-          >
-            User Dashboard →
-          </button>
-          <span className="text-slate-300">|</span>
-          <button
-            type="button"
-            onClick={() => switchDemoRole("provider")}
-            className="text-primary font-bold hover:underline cursor-pointer"
-          >
-            Provider Dashboard →
-          </button>
-          <span className="text-slate-300">|</span>
-          <Link href="/temporary-support" className="text-primary font-bold hover:underline">
-            Temporary Support Catalog →
-          </Link>
-          <span className="text-slate-300">|</span>
-          <button
-            type="button"
-            onClick={() => switchDemoRole("admin")}
-            className="text-primary font-bold hover:underline cursor-pointer"
-          >
-            Admin Dashboard →
-          </button>
-        </div>
-      </div>
+
     </div>
   );
 }

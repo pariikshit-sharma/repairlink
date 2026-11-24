@@ -144,8 +144,11 @@ function BookRepairWizardContent() {
         issueCategory: selectedCategory,
         description: `${description} (Onset: ${symptomOnset})`,
         images,
+        userId: user?.id || undefined,
+        userName: user?.profile?.full_name || (user?.email ? user.email.split("@")[0] : undefined),
+        userPhone: user?.profile?.phone || undefined,
         providerId: selectedProvider ? selectedProvider.id : null,
-        providerName: selectedProvider ? selectedProvider.businessName : "Auto-Match (Apex Mobility Hub)",
+        providerName: selectedProvider ? selectedProvider.businessName : "Auto-Match (Nearest Verified Provider)",
         servicePreference,
         serviceAddress,
         urgency,
@@ -618,7 +621,7 @@ function BookRepairWizardContent() {
                 <div className="flex justify-between pb-2 border-b border-slate-200">
                   <span className="text-muted-foreground">Assigned Provider:</span>
                   <strong className="text-primary">
-                    {selectedProvider ? selectedProvider.businessName : "Auto-Match (Apex Mobility Hub)"}
+                    {selectedProvider ? selectedProvider.businessName : "Auto-Match (Nearest Verified Provider)"}
                   </strong>
                 </div>
 

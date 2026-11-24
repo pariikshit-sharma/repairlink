@@ -77,16 +77,16 @@ function ProviderDashboardContent() {
     providerDetails?.is_available ?? true
   );
   const [businessName, setBusinessName] = useState(
-    providerDetails?.business_name || "Apex Mobility Diagnostics & Servicing"
+    providerDetails?.business_name || user?.profile?.full_name || "Mobility Repair Center"
   );
   const [contactName, setContactName] = useState(
-    user?.profile?.full_name || "Vikram Sharma (Apex Mobility)"
+    user?.profile?.full_name || "Service Technician"
   );
   const [contactPhone, setContactPhone] = useState(
-    user?.profile?.phone || "+91 98223 54321"
+    user?.profile?.phone || "+91 98223 00201"
   );
   const [workshopAddress, setWorkshopAddress] = useState(
-    user?.profile?.address || "14 Okhla Industrial Area Phase 3, New Delhi"
+    user?.profile?.address || "New Delhi"
   );
   const [city, setCity] = useState(user?.profile?.city || "New Delhi");
   const [serviceRadius, setServiceRadius] = useState(
@@ -97,7 +97,7 @@ function ProviderDashboardContent() {
   );
   const [certificationDetails, setCertificationDetails] = useState(
     providerDetails?.certification_details ||
-      "Certified Assistive Technology Repair Specialist (ISPO India Affiliated)"
+      "Certified Assistive Technology Specialist"
   );
   const [selectedServices, setSelectedServices] = useState<string[]>(
     providerDetails?.service_categories || [

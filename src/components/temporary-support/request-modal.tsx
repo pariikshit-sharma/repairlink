@@ -51,10 +51,10 @@ export function RequestTemporarySupportModal({
   );
 
   // Form State
-  const [userName, setUserName] = useState(user?.profile?.full_name || "Ramesh Kumar");
-  const [userPhone, setUserPhone] = useState(user?.profile?.phone || "+91 98112 34567");
+  const [userName, setUserName] = useState(user?.profile?.full_name || "");
+  const [userPhone, setUserPhone] = useState(user?.profile?.phone || "");
   const [userAddress, setUserAddress] = useState(
-    user?.profile?.address || "Flat 402, Block C, Mayur Vihar Phase 1, New Delhi"
+    user?.profile?.address || ""
   );
   const [selectedTicket, setSelectedTicket] = useState(
     activeTickets.length > 0 ? activeTickets[0].ticket_number : "RL-2024-8941"
@@ -275,7 +275,7 @@ export function RequestTemporarySupportModal({
                     <Input
                       value={userName}
                       onChange={(e) => setUserName(e.target.value)}
-                      placeholder="e.g. Ramesh Kumar"
+                      placeholder="Your full legal name"
                       required
                     />
                   </div>

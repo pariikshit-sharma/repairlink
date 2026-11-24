@@ -100,18 +100,14 @@ export default function TemporarySupportPage() {
   // User's temporary requests
   const userRequests = useMemo(() => {
     if (!user) {
-      return requests.filter(
-        (r) =>
-          r.user_id === "usr-demo-01" ||
-          r.user_id === "demo-user-001" ||
-          r.user_name === "Ramesh Kumar"
-      );
+      return [];
     }
     return requests.filter(
       (r) =>
         r.user_id === user.id ||
-        r.user_name === user.profile.full_name ||
-        (user.id === "demo-user-001" && r.user_id === "usr-demo-01")
+        (user.email && r.user_email === user.email) ||
+        (user.profile?.full_name && r.user_name?.toLowerCase() === user.profile.full_name.toLowerCase()) ||
+        (user.id === "user-default-01" && (r.user_id === "user-default-01" || r.user_id === "usr-demo-01"))
     );
   }, [requests, user]);
 
@@ -140,7 +136,7 @@ export default function TemporarySupportPage() {
                 <HeartHandshake className="w-3.5 h-3.5 mr-1" /> Mobility-Continuity Guarantee
               </Badge>
               <Badge variant="outline" className="text-xs text-slate-300 border-slate-700">
-                SBI Young Innovators Network
+                Verified Healthcare Network
               </Badge>
             </div>
 

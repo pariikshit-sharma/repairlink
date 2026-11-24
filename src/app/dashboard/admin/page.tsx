@@ -1219,40 +1219,7 @@ function AdminDashboardContent() {
         </Dialog>
       )}
 
-      {/* Evaluation Role Switcher Banner */}
-      <div className="p-4 rounded-xl bg-slate-100 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-        <div>
-          <span className="font-bold text-secondary">Evaluating for SBI Young Innovators Ideathon?</span>
-          <p className="text-muted-foreground">
-            Switch portals dynamically using RBAC session context:
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onClick={() => switchDemoRole("user")}
-            className="text-primary font-bold hover:underline cursor-pointer"
-          >
-            User Dashboard →
-          </button>
-          <span className="text-slate-300">|</span>
-          <button
-            type="button"
-            onClick={() => switchDemoRole("provider")}
-            className="text-primary font-bold hover:underline cursor-pointer"
-          >
-            Provider Dashboard →
-          </button>
-          <span className="text-slate-300">|</span>
-          <button
-            type="button"
-            onClick={() => switchDemoRole("institution")}
-            className="text-primary font-bold hover:underline cursor-pointer"
-          >
-            Institution Dashboard →
-          </button>
-        </div>
-      </div>
+
     </div>
   );
 }
