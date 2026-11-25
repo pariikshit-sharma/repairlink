@@ -82,13 +82,13 @@ export const DEMO_ACCOUNTS: Record<UserRole, AuthSessionUser> = {
   },
   institution: {
     id: "inst-default-03",
-    email: "institution@repairlink.org",
+    email: "ngo@repairlink.org",
     role: "institution",
     profile: {
       id: "inst-default-03",
       role: "institution",
       full_name: "National Rehabilitation Center",
-      email: "institution@repairlink.org",
+      email: "ngo@repairlink.org",
       phone: "+91 11 2658 0001",
       city: "New Delhi",
       address: "Medical Enclave, New Delhi",
@@ -360,7 +360,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       // Match against preset role accounts or create a custom dynamic user
       const foundRole = (Object.keys(DEMO_ACCOUNTS) as UserRole[]).find(
-        (r) => DEMO_ACCOUNTS[r].email.toLowerCase() === email.toLowerCase()
+        (r) =>
+          DEMO_ACCOUNTS[r].email.toLowerCase() === email.toLowerCase() ||
+          (r === "institution" && email.toLowerCase() === "institution@repairlink.org")
       );
 
       const targetRole = foundRole || desiredRole || "user";

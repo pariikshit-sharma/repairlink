@@ -101,7 +101,7 @@ function LoginContent() {
   const fillDemoAccount = (role: UserRole) => {
     setSelectedRole(role);
     setEmail(DEMO_ACCOUNTS[role].email);
-    setPassword("Demo123456!");
+    setPassword("Password@123");
     setErrorMessage("");
   };
 
@@ -237,18 +237,26 @@ function LoginContent() {
         </button>
 
         {showDemoHelper && (
-          <div className="mt-3 p-3 bg-slate-50 border border-slate-200 rounded-xl text-left space-y-2 animate-in fade-in duration-150">
-            <p className="text-[11px] font-bold text-secondary">Click to auto-fill sample credentials for testing:</p>
+          <div className="mt-3 p-3 bg-slate-50 border border-slate-200 rounded-xl text-left space-y-2.5 animate-in fade-in duration-150">
+            <div className="flex items-center justify-between border-b border-slate-200/80 pb-1.5">
+              <p className="text-[11px] font-bold text-secondary">Preset Test Credentials:</p>
+              <span className="text-[10px] font-mono bg-slate-200/80 text-slate-800 px-1.5 py-0.5 rounded font-semibold">
+                Password: Password@123
+              </span>
+            </div>
             <div className="grid grid-cols-2 gap-1.5">
               {ROLE_OPTIONS.map((item) => (
                 <button
                   key={item.role}
                   type="button"
                   onClick={() => fillDemoAccount(item.role)}
-                  className="p-1.5 bg-white border border-slate-200 rounded-md text-[11px] text-left hover:border-primary transition-colors flex items-center justify-between"
+                  className="p-2 bg-white border border-slate-200 rounded-lg text-[11px] text-left hover:border-primary hover:bg-orange-50/30 transition-all flex items-center justify-between shadow-2xs"
                 >
-                  <span className="font-semibold text-secondary">{item.label}</span>
-                  <span className="text-[10px] text-primary">Fill →</span>
+                  <div>
+                    <span className="font-semibold text-secondary block">{item.label}</span>
+                    <span className="text-[10px] text-muted-foreground font-mono">{DEMO_ACCOUNTS[item.role].email}</span>
+                  </div>
+                  <span className="text-[10px] text-primary font-bold ml-1">Fill →</span>
                 </button>
               ))}
             </div>
