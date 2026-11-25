@@ -72,40 +72,28 @@ export function Logo({
       </div>
 
       {/* Official Wordmark */}
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center shrink-0">
         <div className="flex items-baseline tracking-tight font-extrabold font-sans leading-none">
-          {/* "Repair" with orange dot on the 'i' */}
           <span className={cn(textSizes[size], inverted ? "text-white" : "text-[#17253D]")}>
-            Repa
+            Repair
           </span>
-          <span className={cn(textSizes[size], "relative inline-block", inverted ? "text-white" : "text-[#17253D]")}>
-            <span className="text-[#E78235] font-black absolute -top-1 left-1/2 -translate-x-1/2 text-[10px] leading-none">
-              ●
-            </span>
-            ı
-          </span>
-          <span className={cn(textSizes[size], inverted ? "text-white" : "text-[#17253D]")}>
-            r
-          </span>
-          <span className={cn(textSizes[size], "text-[#17253D]", inverted ? "text-slate-100" : "text-[#17253D]")}>
+          <span className={cn(textSizes[size], inverted ? "text-amber-400" : "text-[#E78235]")}>
             Link
           </span>
         </div>
 
         {showTagline && (
-          <div className="flex items-center gap-1.5 mt-1">
-            <span className="w-3 h-[1px] bg-[#E78235]" />
+          <div className="flex items-center gap-1.5 mt-1 whitespace-nowrap">
+            <span className="w-2.5 h-[1.5px] bg-[#E78235] shrink-0" />
             <span
               className={cn(
-                "text-[9px] sm:text-[10px] font-medium tracking-tight",
+                "text-[9px] sm:text-[10px] font-semibold tracking-tight whitespace-nowrap",
                 inverted ? "text-slate-300" : "text-[#5A6E7F]"
               )}
             >
-              {taglineVariant === "possibilities"
-                ? "Connecting People to Possibilities"
-                : "When Mobility Stops, Support Shouldn't"}
+              Connecting People to Possibilities
             </span>
-            <span className="w-3 h-[1px] bg-[#E78235]" />
+            <span className="w-2.5 h-[1.5px] bg-[#E78235] shrink-0" />
           </div>
         )}
       </div>
