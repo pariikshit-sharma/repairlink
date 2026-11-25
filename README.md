@@ -1,9 +1,10 @@
 # REPAIRLINK — When Mobility Stops, Support Shouldn't
 
+**Live Deployment:** [https://repairlink-taupe.vercel.app](https://repairlink-taupe.vercel.app)  
 **Tagline:** *When Mobility Stops, Support Shouldn't.*  
 **Secondary Wordmark Subtitle:** *Connecting People to Possibilities*
 
-REPAIRLINK is a responsive digital wheelchair repair and mobility-continuity platform built for the **SBI Young Innovators Ideathon**. It connects wheelchair users, vetted assistive-device technicians, participating hospitals, rehabilitation centres, NGOs, and platform administrators inside a unified operational ecosystem.
+REPAIRLINK is a digital wheelchair repair and mobility-continuity platform connecting wheelchair users, vetted assistive-device technicians, participating hospitals, rehabilitation centres, NGOs, and platform administrators inside a unified operational ecosystem.
 
 ---
 
@@ -85,30 +86,24 @@ pnpm run build
 
 ---
 
-## Ideathon Evaluation & Demo Portals
+## Stakeholder Portals & RBAC
 
-Use **Portals & Dashboards -> Switch Stakeholder Role** in the top navigation bar (or the evaluation bar inside any dashboard) to switch cleanly between RBAC-enforced roles:
+Access role-specific features via the dedicated portals:
 
-| Role | Demo Route | Focus Area |
+| Role | Route | Key Capabilities |
 | :--- | :--- | :--- |
-| Wheelchair User | `/dashboard/user` | Book repairs, approve quotes, request hospital loaners |
-| Repair Provider | `/dashboard/provider` | Triage queue, itemized quote builder, service notes |
-| Institution (Hospital / NGO) | `/dashboard/institution` | Clinical loan approvals, inventory registry, return sanitization |
-| Platform Administrator | `/dashboard/admin` | Credential verification, suspension moderation, categories & logs |
+| Wheelchair User | `/dashboard/user` | Real-time repair tickets, hospital loaner tracker, specs & mobility care points |
+| Repair Provider | `/dashboard/provider` | Triage queue, itemized quotation builder, service notes & repair execution |
+| Institution (Hospital / NGO) | `/dashboard/institution` | Clinical loan approvals, equipment inventory registry, return sanitization |
+| Platform Administrator | `/dashboard/admin` | Credential verifications, account moderation, ticket monitors, audit logs |
 
 ---
 
-## Deploying to Vercel & Installing / Packaging for Android
+## Live Deployment & Mobile Access
 
-### Deploy to Vercel
+### Live Web Application
+- **Production URL:** [https://repairlink-taupe.vercel.app](https://repairlink-taupe.vercel.app)
 
-1. Push the repository to GitHub/GitLab/Bitbucket.
-2. Import into Vercel (`vercel.json` is pre-configured with Next.js security headers).
-3. Add the environment variables from `.env.example` in Vercel Project Settings (or leave unset to demonstrate seeded Ideathon mode).
-
-### Installing & Testing on Android
-
-- **Instant Android PWA Install (No Android SDK Required):**
-  Once deployed over HTTPS (e.g., Vercel), open the URL in **Chrome on Android**. Because `src/app/manifest.ts` and square PNG launcher icons (`public/icons/icon-192.png`, `public/icons/icon-512.png`) are configured, tap the browser menu and select **Install app** / **Add to Home screen** to launch REPAIRLINK standalone without browser chrome.
-- **Generating a Distributable `.apk` Binary (Requires External Toolchain):**
-  Because this project is a Next.js App Router application with server/middleware routes (`src/middleware.ts`), generating a signed Android `.apk` requires wrapping the hosted HTTPS URL using **Capacitor** (`server.url`) or **Bubblewrap (Trusted Web Activity)** on a workstation that has **Java JDK (17+)** and the **Android SDK / Gradle** installed.
+### Android Companion APK
+- Located at [`RepairLink-debug.apk`](file:///d:/repairlink%20project/RepairLink-debug.apk) in the repository root.
+- Install on your Android device and enter `https://repairlink-taupe.vercel.app` at the server prompt to test the native Android companion.
